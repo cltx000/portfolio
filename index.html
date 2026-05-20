@@ -7,6 +7,7 @@
     <meta name="description" content="Clirk John — IT graduate focused on web development, POS systems, and business solutions." />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" />
     <link rel="stylesheet" href="style.css" />
+    <link rel="icon" type="image/png" href="img/snorlax 💤.jpg">
 </head>
 <body>
     <header class="site-header">
@@ -94,7 +95,7 @@
                 <div class="skills-grid">
                     <div class="skill-card">
                         <h4>Frontend</h4>
-                        <p>HTML5, CSS3, JavaScript, Responsive Design, Tailwind / Vanilla CSS</p>
+                        <p>HTML5, CSS3, JavaScript, Responsive Design, Tailwind </p>
                     </div>
                     <div class="skill-card">
                         <h4>Backend</h4>
@@ -106,7 +107,7 @@
                     </div>
                     <div class="skill-card">
                         <h4>Tools</h4>
-                        <p>Git, VS Code, Postman, Composer, Basic Linux & Windows admin</p>
+                        <p>Git, VS Code, Composer, Basic Linux & Windows admin</p>
                     </div>
                 </div>
             </div>
@@ -125,7 +126,7 @@
                             <div class="project-meta">
                                 <small>Tech: PHP, MySQL, Bootstrap</small>
                                 <div class="project-actions">
-                                    <a href="#" class="btn-sm">Live Demo</a>
+                                    <button type="button" class="btn-sm btn-modal" data-title="Barangay Item Borrowing System" data-image="img/brgy ITEM reservation.png" data-description="Web-based system to track barangay equipment, manage loans and returns, and produce usage reports to improve accountability." data-tech="PHP · MySQL · Bootstrap" data-features="Loan tracking by user and item|Return status and overdue monitoring|Printable borrowing logs">View details</button>
                                     <a href="https://github.com/cltx000" class="btn-sm btn-outline">GitHub</a>
                                 </div>
                             </div>
@@ -141,7 +142,7 @@
                             <div class="project-meta">
                                 <small>Tech: PHP, MySQL, JS</small>
                                 <div class="project-actions">
-                                    <a href="#" class="btn-sm">Live Demo</a>
+                                    <button type="button" class="btn-sm btn-modal" data-title="Bus Ticketing Management" data-image="img/Bus Ticketing.png" data-description="Booking & ticketing system built to simplify reservations and manage passenger manifests efficiently." data-tech="PHP · MySQL · JavaScript" data-features="Route and seat reservation|Passenger manifest generation|Payment status tracking">View details</button>
                                     <a href="https://github.com/cltx000" class="btn-sm btn-outline">GitHub</a>
                                 </div>
                             </div>
@@ -155,9 +156,9 @@
                             <h3>Thesis Archive System</h3>
                             <p>Digital archive for storing and searching academic papers with role-based access and file management.</p>
                             <div class="project-meta">
-                                <small>Tech: PHP, MySQL, jQuery</small>
+                                <small>Tech: PHP, MySQL, Tailwind CSS, Collaborative Filtering</small>
                                 <div class="project-actions">
-                                    <a href="#" class="btn-sm">Live Demo</a>
+                                    <button type="button" class="btn-sm btn-modal" data-title="Thesis Archive System" data-image="img/PLP online thesis portal.png" data-description="Digital archive for storing and searching academic papers with role-based access and file management." data-tech="PHP · MySQL · jQuery" data-features="Searchable thesis catalog|Role-based admin access|Document upload and management">View details</button>
                                     <a href="https://github.com/cltx000" class="btn-sm btn-outline">GitHub</a>
                                 </div>
                             </div>
@@ -225,6 +226,35 @@
         </section>
     </main>
 
+    <div class="project-modal-overlay" id="projectModal" hidden>
+        <div class="project-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+            <button class="project-modal-close" id="closeModal" aria-label="Close project details"><i class="fa-solid fa-xmark"></i></button>
+            <div class="project-modal-body">
+                <div class="project-modal-image">
+                    <img id="modalImage" src="" alt="Project screenshot" loading="lazy">
+                </div>
+                <div class="project-modal-content">
+                    <span class="section-label">Project Overview</span>
+                    <h2 id="modalTitle">Project title</h2>
+                    <p id="modalDescription"></p>
+                    <div class="project-modal-meta">
+                        <div>
+                            <h4>Features</h4>
+                            <ul id="modalFeatures"></ul>
+                        </div>
+                        <div>
+                            <h4>Tech stack</h4>
+                            <p id="modalTech"></p>
+                        </div>
+                    </div>
+                    <div class="project-modal-actions">
+                        <a href="#" id="modalGithub" class="btn-sm btn-outline" target="_blank" rel="noreferrer">View on GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <footer class="site-footer">
         <div class="container footer-grid">
             <div>
@@ -236,7 +266,7 @@
                 <a href="https://www.linkedin.com/in/clirk-john-970b56403/" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
                 <a href="mailto:clirkkwek@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
             </div>
-            <small>© <span id="year"></span> Clirk John — All rights reserved</small>
+            <small>© <span id="year"></span> — All rights reserved</small>
         </div>
     </footer>
 
@@ -285,6 +315,80 @@
                     // close mobile menu if open
                     if (!mobileMenu.hasAttribute('hidden')) mobileMenu.setAttribute('hidden', '');
                 });
+            });
+        })();
+
+        // Project detail modal (opens ONLY from .btn-modal clicks)
+        (function(){
+            const modal = document.getElementById('projectModal');
+            const modalImage = document.getElementById('modalImage');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalDescription = document.getElementById('modalDescription');
+            const modalFeatures = document.getElementById('modalFeatures');
+            const modalTech = document.getElementById('modalTech');
+            const modalGithub = document.getElementById('modalGithub');
+            const closeModal = document.getElementById('closeModal');
+
+            const populateModal = (button) => {
+                const title = button.getAttribute('data-title') || 'Project title';
+                const description = button.getAttribute('data-description') || 'Details coming soon.';
+                const tech = button.getAttribute('data-tech') || 'N/A';
+                const github = button.getAttribute('data-github') || 'https://github.com/cltx000';
+                const features = (button.getAttribute('data-features') || '').split('|').filter(Boolean);
+                const image = button.getAttribute('data-image') || '';
+
+                if (modalImage) {
+                    modalImage.src = image;
+                    modalImage.alt = `${title} screenshot`;
+                }
+                if (modalTitle) modalTitle.textContent = title;
+                if (modalDescription) modalDescription.textContent = description;
+                if (modalTech) modalTech.textContent = tech;
+                if (modalGithub) modalGithub.href = github;
+                if (modalFeatures) {
+                    modalFeatures.innerHTML = '';
+                    if (features.length) {
+                        features.forEach(item => {
+                            const li = document.createElement('li');
+                            li.textContent = item.trim();
+                            modalFeatures.appendChild(li);
+                        });
+                    } else {
+                        modalFeatures.innerHTML = '<li>No feature details available.</li>';
+                    }
+                }
+            };
+
+            const openModal = (button) => {
+                if (!button || !modal) return;
+                populateModal(button);
+                modal.removeAttribute('hidden');
+                document.body.style.overflow = 'hidden';
+            };
+
+            const close = () => {
+                if (!modal) return;
+                modal.setAttribute('hidden', '');
+                document.body.style.overflow = '';
+            };
+
+            // Use event delegation so only explicit .btn-modal clicks open the modal
+            document.addEventListener('click', (e) => {
+                const btn = e.target.closest && e.target.closest('.btn-modal');
+                if (btn) {
+                    e.preventDefault();
+                    openModal(btn);
+                }
+            });
+
+            if (closeModal) closeModal.addEventListener('click', close);
+            if (modal) {
+                modal.addEventListener('click', (event) => {
+                    if (event.target === modal) close();
+                });
+            }
+            window.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape' && modal && !modal.hasAttribute('hidden')) close();
             });
         })();
 
