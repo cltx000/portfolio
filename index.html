@@ -1,151 +1,294 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
-    <title>Clirk John Awitin Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Clirk John — Web & Systems Developer</title>
+    <meta name="description" content="Clirk John — IT graduate focused on web development, POS systems, and business solutions." />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" />
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <nav>
-        <div class="nav-container">
-            <div class="logo" data-aos="zoom-in" data-aos-duration="1000">
-                <span></span>
-            </div>
-            <div class="links">
-                <div class="link" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100"><a href="#home">Home</a></div>
-                <div class="link" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200"><a href="#about">About</a></div>
-                <div class="link" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300"><a href="#skills">Skills</a></div>
-                <div class="link" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400"><a href="#services">Services</a></div>
-                <div class="link" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500"><a href="#blogs">Projects</a></div>
-                <div class="link contact-btn" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600"><a href="#contact">Contact Us</a></div>
-            </div>
-            <i class="fa-solid fa-bars hamburg" onclick="hamburg()"></i>
-        </div>
-        <div class="dropdown">
-            <div class="links">
-                <a href="#home" onclick="cancel()">Home</a>
-                <a href="#about" onclick="cancel()">About</a>
-                <a href="#skills" onclick="cancel()">Skills</a>
-                <a href="#services" onclick="cancel()">Services</a>
-                <a href="#blogs" onclick="cancel()">Projects</a>
-                <a href="#contact" onclick="cancel()">Contact Us</a>
-                <i class="fa-solid fa-xmark cancel" onclick="cancel()"></i>
-            </div>
-        </div>
-    </nav>
-        <section id="home">
-            <div class="main-container">
-                <div class="image" data-aos="zoom-in-right" data-aos-duration="2500">
-                    <img src="img/main.png" alt="Clirk John Awitin">
-                </div>
-                <div class="content">
-                    <h1 data-aos="fade-left" data-aos-duration="1000" data-aos-delay="800">Hey I'm <span>Clirk John</span></h1>
-                    <div class="typewriter" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="900">I'm a <span></span></div>
-                    <p data-aos="flip-up" data-aos-duration="1000" data-aos-delay="1000">Passionate IT student and aspiring developer focused on creating clean, responsive, and user-friendly web experiences.</p>
-                    <div class="social-links" data-aos="flip-down" data-aos-duration="1000" data-aos-delay="1200">
-                        <a href="https://github.com/cltx000" ><i class="fa-brands fa-github"></i></a>
-                        <a href="https://www.facebook.com/clirkjohn18"><i class="fa-brands fa-facebook"></i></a>
-                        <a href="https://www.linkedin.com/in/clirk-john-970b56403/"><i class="fa-brands fa-linkedin"></i></a>
-                        
-                    </div>
-                    <div class="btn" data-aos="zoom-out-left" data-aos-duration="1000" data-aos-delay="1300">
-                        <a href="Clirk John_CV.pdf" download class="download-btn">Download CV</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="about" class="scroll-section">
-            <div class="section-inner">
-                <h2>About Me</h2>
-                <p>Aspiring IT professional and passionate developer with experience in web development, UI/UX design, and responsive layouts. I enjoy creating clean, user-friendly, and functional digital experiences that solve real-world problems. Skilled in PHP, Laravel, XML/XSL, and database management, with a growing interest in POS systems, modern websites, and system development. I am continuously improving my coding skills and exploring new technologies to build efficient and innovative solutions.
-.</p>
-            </div>
-        </section>
-
-        <section id="skills" class="scroll-section">
-            <div class="section-inner">
-                <h2>Skills</h2>
+    <header class="site-header">
+        <div class="container nav-grid">
+            <a class="brand" href="#home">
+                <span class="brand-name">Clirk John</span>
+                <small class="brand-role">Web & Systems Developer</small>
+            </a>
+            <nav class="primary-nav" aria-label="Main navigation">
                 <ul>
-                    <li>HTML5, CSS3, JavaScript</li>
-                    <li>Responsive Web Design</li>
-                    <li>React, Vue, or vanilla JS</li>
-                    <li>Design systems and accessibility</li>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#resume">Resume</a></li>
+                    <li><a href="#contact" class="btn-primary">Contact</a></li>
                 </ul>
+            </nav>
+            <div class="nav-actions">
+                <button id="theme-toggle" aria-label="Toggle dark mode" title="Toggle theme"><i class="fa-solid fa-moon"></i></button>
+                <button class="hamburger" id="hamburger" aria-label="Open menu"><i class="fa-solid fa-bars"></i></button>
+            </div>
+        </div>
+        <div class="mobile-menu" id="mobileMenu" hidden>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#resume">Resume</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="container hero-grid">
+                <div class="hero-left">
+                    <h1>Hi — I'm <span>Clirk John</span></h1>
+                    <p class="lead">Junior IT professional building practical web apps and business systems — specializing in responsive websites, POS & inventory systems, and maintainable backend solutions.</p>
+                    <div class="hero-cta">
+                        <a href="#projects" class="btn-primary">View Projects</a>
+                        <a href="Clirk John_CV.pdf" download class="btn-outline">Download Resume</a>
+                        <a href="#contact" class="btn-ghost">Contact Me</a>
+                    </div>
+                    <div class="hero-socials" aria-hidden="false">
+                        <a href="https://github.com/cltx000" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/clirk-john-970b56403/" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="https://www.facebook.com/clirkjohn18" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                    </div>
+                </div>
+                <div class="hero-right" aria-hidden="true">
+                    <img src="img/main.png" alt="Portrait of Clirk John" loading="lazy">
+                </div>
             </div>
         </section>
 
-        <section id="services" class="scroll-section">
-            <div class="section-inner">
-                <h2>Services</h2>
-                <p>Web development, UI/UX design, PC building, troubleshooting, system maintenance, and technical support.</p>
+        <section id="about" class="section">
+            <div class="container">
+                <h2>About</h2>
+                <p class="muted">I craft practical, user-first software for small businesses and teams. My experience includes front-end development with modern HTML/CSS/JavaScript, backend work with PHP and lightweight frameworks, and designing reliable point-of-sale and inventory systems. I focus on clarity, maintainability, and delivering working solutions that save time and reduce errors.</p>
+                <div class="about-grid">
+                    <div>
+                        <h3>What I do</h3>
+                        <ul>
+                            <li>Responsive websites and web apps</li>
+                            <li>POS & inventory systems for small businesses</li>
+                            <li>Basic system administration & troubleshooting</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>Approach</h3>
+                        <p>Product-focused development, clear documentation, and iterative improvements. I enjoy collaborating with clients to turn requirements into simple, reliable systems.</p>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <section id="blogs" class="scroll-section">
-            <div class="section-inner">
-                <h2>Projects</h2>
+        <section id="skills" class="section">
+            <div class="container">
+                <h2>Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <h4>Frontend</h4>
+                        <p>HTML5, CSS3, JavaScript, Responsive Design, Tailwind / Vanilla CSS</p>
+                    </div>
+                    <div class="skill-card">
+                        <h4>Backend</h4>
+                        <p>PHP, Laravel basics, Node.js (intro), REST APIs</p>
+                    </div>
+                    <div class="skill-card">
+                        <h4>Database</h4>
+                        <p>MySQL / MariaDB, SQLite — schema design & queries</p>
+                    </div>
+                    <div class="skill-card">
+                        <h4>Tools</h4>
+                        <p>Git, VS Code, Postman, Composer, Basic Linux & Windows admin</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="section">
+            <div class="container">
+                <h2>Selected Projects</h2>
                 <div class="projects-grid">
-                    <article class="project-card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
-                        <div class="project-image">
-                            <img src="img/brgy ITEM reservation.png" alt="POS Project">
-                        </div>
-                        <div class="project-info">
-                            <span class="project-category">Information Management System</span>
+                    <article class="project-card">
+                        <img class="project-thumb" src="img/brgy ITEM reservation.png" alt="Barangay Item Borrowing System">
+                        <div class="project-body">
+                            <span class="tag">Information System</span>
                             <h3>Barangay Item Borrowing System</h3>
-                            <p>A management system for tracking borrowed barangay equipment, monitoring returns, and organizing records.</p>
-                           
+                            <p>Web-based system to track barangay equipment, manage loans and returns, and produce usage reports to improve accountability.</p>
+                            <div class="project-meta">
+                                <small>Tech: PHP, MySQL, Bootstrap</small>
+                                <div class="project-actions">
+                                    <a href="#" class="btn-sm">Live Demo</a>
+                                    <a href="https://github.com/cltx000" class="btn-sm btn-outline">GitHub</a>
+                                </div>
+                            </div>
                         </div>
                     </article>
-                    <article class="project-card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
-                        <div class="project-image">
-                            <img src="img/Bus Ticketing.png" alt="Website Project">
-                        </div>
-                        <div class="project-info">
-                            <span class="project-category">Information Management System</span>
-                            <h3>Bus Ticketing Management System</h3>
-                            <p>A system designed to simplify bus reservations, ticket booking, and passenger management efficiently.</p>
-                           
+
+                    <article class="project-card">
+                        <img class="project-thumb" src="img/Bus Ticketing.png" alt="Bus Ticketing Management System">
+                        <div class="project-body">
+                            <span class="tag">Information System</span>
+                            <h3>Bus Ticketing Management</h3>
+                            <p>Booking & ticketing system built to simplify reservations and manage passenger manifests efficiently.</p>
+                            <div class="project-meta">
+                                <small>Tech: PHP, MySQL, JS</small>
+                                <div class="project-actions">
+                                    <a href="#" class="btn-sm">Live Demo</a>
+                                    <a href="https://github.com/cltx000" class="btn-sm btn-outline">GitHub</a>
+                                </div>
+                            </div>
                         </div>
                     </article>
-                    <article class="project-card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">
-                        <div class="project-image">
-                            <img src="img/PLP online thesis portal.png" alt="System Design Project">
-                        </div>
-                        <div class="project-info">
-                            <span class="project-category">Website Development</span>
+
+                    <article class="project-card">
+                        <img class="project-thumb" src="img/PLP online thesis portal.png" alt="Thesis Archive System">
+                        <div class="project-body">
+                            <span class="tag">Website</span>
                             <h3>Thesis Archive System</h3>
-                            <p>A digital platform for storing, managing, and accessing research papers and thesis documents online.</p>
-                           
+                            <p>Digital archive for storing and searching academic papers with role-based access and file management.</p>
+                            <div class="project-meta">
+                                <small>Tech: PHP, MySQL, jQuery</small>
+                                <div class="project-actions">
+                                    <a href="#" class="btn-sm">Live Demo</a>
+                                    <a href="https://github.com/cltx000" class="btn-sm btn-outline">GitHub</a>
+                                </div>
+                            </div>
                         </div>
                     </article>
                 </div>
             </div>
         </section>
 
-        <section id="contact" class="scroll-section">
-            <div class="section-inner">
-                <h2>Contact</h2>
-                <p>Reach out at <a href="mailto:clirkkwek@gmail.com">clirkkwek@gmail.com</a> or via social links above.</p>
+        <section id="services" class="section bg-soft">
+            <div class="container">
+                <h2>Services</h2>
+                <div class="services-grid">
+                    <div class="service">Website Development</div>
+                    <div class="service">POS & Inventory Systems</div>
+                    <div class="service">Business Systems Integration</div>
+                    <div class="service">Portfolio & Personal Sites</div>
+                    <div class="service">PC Troubleshooting</div>
+                    <div class="service">System Maintenance</div>
+                </div>
             </div>
         </section>
 
-        <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-        <script>
-          AOS.init({offset:0});
-        </script>
-        <script>
-            function hamburg(){
-                const navbar = document.querySelector(".dropdown")
-                navbar.style.transform = "translateY(0px)"
-            }
-            function cancel(){
-                const navbar = document.querySelector(".dropdown")
-                navbar.style.transform = "translateY(-500px)"
-            }
-        </script>
+        <section id="resume" class="section">
+            <div class="container">
+                <h2>Resume & Certifications</h2>
+                <p class="muted">Download a concise resume with project highlights and education.</p>
+                <a href="Clirk John_CV.pdf" download class="btn-primary">Download Resume (PDF)</a>
+                <div class="certifications">
+                    <h3>Certifications & Training</h3>
+                    <ul>
+                        <li><strong>PhilDev — SHE++ Workshops</strong> — Leadership &amp; Technopreneurial Mindset (Oct 2025)</li>
+                        <li><strong>PhilDev — SHE++ Workshops</strong> — Alibaba Cloud System (Sep 2025)</li>
+                        <li><strong>PhilDev — SHE++ Workshops</strong> — Strategic Foresight &amp; Technopreneurship (Aug 2025)</li>
+                        <li><strong>PhilDev — SHE++ Workshops</strong> — Project Management, Cybersecurity &amp; Fraud Management (Aug 2025)</li>
+                        <li><strong>PhilDev — SHE++ Workshops</strong> — Design Thinking (Aug 2025)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <div class="container">
+                <h2>Contact</h2>
+                <div class="contact-grid">
+                    <form id="contactForm" class="contact-form" aria-label="Contact form">
+                        <label>Full name<input type="text" name="name" required></label>
+                        <label>Email address<input type="email" name="email" required></label>
+                        <label>Message<textarea name="message" rows="5" required></textarea></label>
+                        <div class="form-actions">
+                            <button type="submit" class="btn-primary">Send message</button>
+                            <a href="Clirk John_CV.pdf" download class="btn-sm btn-outline">Download Resume</a>
+                        </div>
+                    </form>
+                    <aside class="contact-info">
+                        <p class="muted">Prefer email? Send a message to <a href="mailto:clirkkwek@gmail.com">clirkkwek@gmail.com</a></p>
+                        <div class="socials">
+                            <a href="https://github.com/cltx000" aria-label="GitHub"><i class="fa-brands fa-github"></i> GitHub</a>
+                            <a href="https://www.linkedin.com/in/clirk-john-970b56403/" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+                            <a href="https://www.facebook.com/clirkjohn18" aria-label="Facebook"><i class="fa-brands fa-facebook"></i> Facebook</a>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div>
+                <strong>Clirk John</strong>
+                <div class="muted">Web & Systems Developer</div>
+            </div>
+            <div class="footer-socials">
+                <a href="https://github.com/cltx000" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/clirk-john-970b56403/" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="mailto:clirkkwek@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+            </div>
+            <small>© <span id="year"></span> Clirk John — All rights reserved</small>
+        </div>
+    </footer>
+
+    <script>
+        // theme toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const root = document.documentElement;
+        const current = localStorage.getItem('theme');
+        if (current) root.setAttribute('data-theme', current);
+        themeToggle.addEventListener('click', () => {
+            const t = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            root.setAttribute('data-theme', t);
+            localStorage.setItem('theme', t);
+        });
+
+        // mobile menu
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        hamburger.addEventListener('click', () => {
+            const open = mobileMenu.hasAttribute('hidden');
+            if (open) mobileMenu.removeAttribute('hidden'); else mobileMenu.setAttribute('hidden', '');
+        });
+
+        // contact form (placeholder behavior)
+        const form = document.getElementById('contactForm');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thanks! Message received (demo).');
+            form.reset();
+        });
+
+        // Smooth scrolling with header offset and mobile menu auto-close
+        (function(){
+            const header = document.querySelector('.site-header');
+            const headerOffset = () => (header ? header.offsetHeight + 8 : 80);
+            const links = Array.from(document.querySelectorAll('a[href^="#"]'));
+            links.forEach(a => {
+                a.addEventListener('click', function(e){
+                    const href = this.getAttribute('href');
+                    if (!href || href === '#') return;
+                    const target = document.querySelector(href);
+                    if (!target) return; // allow external or non-anchor links
+                    e.preventDefault();
+                    const top = target.getBoundingClientRect().top + window.scrollY - headerOffset();
+                    window.scrollTo({ top, behavior: 'smooth' });
+                    // close mobile menu if open
+                    if (!mobileMenu.hasAttribute('hidden')) mobileMenu.setAttribute('hidden', '');
+                });
+            });
+        })();
+
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
 </body>
 </html>
