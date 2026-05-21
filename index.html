@@ -7,9 +7,10 @@
     <meta name="description" content="Clirk John — IT graduate focused on web development, POS systems, and business solutions." />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" />
     <link rel="stylesheet" href="style.css" />
-    <link rel="icon" type="image/png" href="img/snorlax 💤.jpg">
+    <link rel="icon" type="image/png" href="img/snorlax.jpg">
 </head>
 <body>
+    <div id="scrollProgress"></div>
     <header class="site-header">
         <div class="container nav-grid">
             <a class="brand" href="#home">
@@ -53,7 +54,7 @@
                     <p class="lead">Junior IT professional building practical web apps and business systems — specializing in responsive websites, POS & inventory systems, and maintainable backend solutions.</p>
                     <div class="hero-cta">
                         <a href="#projects" class="btn-primary">View Projects</a>
-                        <a href="Clirk John_CV.pdf" download class="btn-outline">Download Resume</a>
+                        
                         <a href="#contact" class="btn-ghost">Contact Me</a>
                     </div>
                     <div class="hero-socials" aria-hidden="false">
@@ -209,8 +210,8 @@
                         <label>Email address<input type="email" name="email" required></label>
                         <label>Message<textarea name="message" rows="5" required></textarea></label>
                         <div class="form-actions">
-                            <button type="submit" class="btn-primary">Send message</button>
-                            <a href="Clirk John_CV.pdf" download class="btn-sm btn-outline">Download Resume</a>
+                            <button type="submit" class="btn-primary">Send Email</button>
+                            
                         </div>
                     </form>
                     <aside class="contact-info">
@@ -271,6 +272,129 @@
     </footer>
 
     <script>
+        // Scroll Progress Bar
+        (function(){
+            const progressBar = document.getElementById('scrollProgress');
+            
+            window.addEventListener('scroll', () => {
+                const scrollTop = window.scrollY;
+                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const scrollPercent = (scrollTop / docHeight) * 100;
+                progressBar.style.width = scrollPercent + '%';
+            }, { passive: true });
+        })();
+
+        // Active Section Indicator with Intersection Observer
+        (function(){
+            const navLinks = document.querySelectorAll('.primary-nav a, .mobile-menu a');
+            const sections = document.querySelectorAll('section[id]');
+            let currentActiveLink = null;
+
+            // Intersection Observer for detecting active section
+            const observerOptions = {
+                root: null,
+                rootMargin: '-50% 0px -50% 0px',
+                threshold: 0
+            };
+
+            const observerCallback = (entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const sectionId = entry.target.id;
+                        updateActiveLink(sectionId);
+                    }
+                });
+            };
+
+            const observer = new IntersectionObserver(observerCallback, observerOptions);
+            sections.forEach(section => observer.observe(section));
+
+            // Update active link styling
+            const updateActiveLink = (sectionId) => {
+                navLinks.forEach(link => {
+                    const href = link.getAttribute('href');
+                    if (href === `#${sectionId}`) {
+                        // Remove active class from all links except Contact button
+                        if (!link.classList.contains('btn-primary')) {
+                            link.classList.add('active');
+                            currentActiveLink = link;
+                        }
+                    } else {
+                        // Don't remove active from Contact button
+                        if (!link.classList.contains('btn-primary')) {
+                            link.classList.remove('active');
+                        }
+                    }
+                });
+            };
+
+            // Set initial active section on page load
+            window.addEventListener('load', () => {
+                const scrollTop = window.scrollY;
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.offsetHeight;
+                    if (scrollTop >= sectionTop - 200 && scrollTop < sectionTop + sectionHeight) {
+                        updateActiveLink(section.id);
+                    }
+                });
+            });
+        })();
+
+        // Navbar scroll animation with optimized performance
+        (function(){
+            const header = document.querySelector('.site-header');
+            let lastScrollTop = window.scrollY;
+            let ticking = false;
+            let scrollTimeout;
+
+            const updateScrollState = () => {
+                const scrollTop = window.scrollY;
+                const delta = scrollTop - lastScrollTop;
+                const scrollingDown = delta > 8;
+                const scrollingUp = delta < -8;
+                const atTop = scrollTop <= 20;
+
+                if (atTop) {
+                    header.classList.add('at-top');
+                    header.classList.remove('scrolling-down', 'scrolling-up');
+                } else if (scrollingDown) {
+                    header.classList.add('scrolling-down');
+                    header.classList.remove('scrolling-up', 'at-top');
+                } else if (scrollingUp) {
+                    header.classList.add('scrolling-up');
+                    header.classList.remove('scrolling-down', 'at-top');
+                }
+
+                lastScrollTop = scrollTop;
+                ticking = false;
+            };
+
+            const showHeader = () => {
+                header.classList.add('scrolling-up');
+                header.classList.remove('scrolling-down', 'at-top');
+            };
+
+            window.addEventListener('scroll', () => {
+                if (!ticking) {
+                    requestAnimationFrame(updateScrollState);
+                    ticking = true;
+                }
+
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(() => {
+                    if (window.scrollY > 20) {
+                        showHeader();
+                    } else {
+                        header.classList.add('at-top');
+                        header.classList.remove('scrolling-down', 'scrolling-up');
+                    }
+                }, 220);
+            }, { passive: true });
+
+            updateScrollState();
+        })();
+
         // theme toggle
         const themeToggle = document.getElementById('theme-toggle');
         const root = document.documentElement;
